@@ -5,7 +5,6 @@
   "installCommand": "npm install",
   "framework": "vite",
   "outputDirectory": "dist",
-  "serverlessFunctionRegion": "fra1",
   "functions": {
     "api/index.ts": {
       "maxDuration": 30,
