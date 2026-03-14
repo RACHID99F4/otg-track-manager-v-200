@@ -1,0 +1,53 @@
+{
+  "name": "otgtrack-manager",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "author": "OTG Track Operations",
+  "description": "Professional Packaging Asset Management System",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"npm run server\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "ts-node-esm server/index.ts",
+    "start": "node api/index.ts",
+    "deploy": "vercel",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^1.33.0",
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^6.19.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/pg": "^8.16.0",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "lucide-react": "^0.561.0",
+    "pg": "^8.19.0",
+    "prisma": "^6.19.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "recharts": "^3.6.0",
+    "tailwind-merge": "^3.4.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^8.2.2",
+    "terser": "^5.46.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

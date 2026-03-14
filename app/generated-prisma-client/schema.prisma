@@ -1,0 +1,117 @@
+// Define database connection via the `DATABASE_URL` env var
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define custom output path for generated Prisma Client
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated-prisma-client"
+}
+
+// Example data model
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+}
+
+model inventory_items {
+  id                   String   @id
+  code_cliche          String?
+  code_forme           String?
+  machine              String?
+  reference            String?
+  client               String?
+  element              String?
+  supplier_cliche      String?
+  supplier_forme       String?
+  poses                Int?
+  date_creation        String?
+  date_creation_cliche String?
+  is_ordered_cliche    Boolean?
+  date_order_cliche    String?
+  date_expected_cliche String?
+  date_delivery_cliche String?
+  date_creation_forme  String?
+  is_ordered_forme     Boolean?
+  date_order_forme     String?
+  date_expected_forme  String?
+  date_delivery_forme  String?
+  comments             String?
+  non_conformity       String?
+  custom_fields        Json?
+}
+
+model otg_repairs {
+  id                  String  @id
+  type                String?
+  linked_code         String?
+  conducteur          String?
+  machine             String?
+  etat                String?
+  repair_kind         String?
+  supplier            String?
+  declaration_date    String?
+  repair_date         String?
+  problem_description String?
+  corrective_action   String?
+  status              String?
+}
+
+model users {
+  id          String  @id
+  name        String?
+  username    String? @unique
+  password    String?
+  photo       String?
+  role        String?
+  permissions Json?
+}
+
+model app_config {
+  id   String @id
+  data Json?
+}
+
+model app_settings {
+  id                  String   @id @db.VarChar(50)
+  primary_color       String?  @default("#002855") @db.VarChar(7)
+  secondary_color     String?  @default("#001a35") @db.VarChar(7)
+  logo                String?  @default("https://otgtrack.com/logo.png")
+  theme               String?  @default("light") @db.VarChar(20)
+  language            String?  @default("fr") @db.VarChar(5)
+  enable_email_alerts Boolean? @default(false)
+  notification_emails String[] @default([])
+}
+
+model machines {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique @db.VarChar(100)
+  color String? @default("#94a3b8") @db.VarChar(7)
+}
+
+model suppliers {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(100)
+}
+
+model conducteurs {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(100)
+}
+
+model custom_field_definitions {
+  id    String @id @db.VarChar(50)
+  label String @db.VarChar(100)
+  type  String @db.VarChar(20)
+}
+
+model column_config {
+  id         String   @id @db.VarChar(50)
+  label      String   @db.VarChar(100)
+  visible    Boolean? @default(true)
+  sort_order Int?     @default(0)
+}
